@@ -119,10 +119,6 @@ const verifyEmail = async (req, res) => {
                         },
 
                     )
-                    // user.isVerified = true
-                    // user.verificationToken = null
-                    // user.verificationExp = null
-                    // await user.save()
                     return res.status(200).json({
                         status: 200,
                         message: "Email verified successfully"
