@@ -27,12 +27,11 @@ const signUp = async (req, res) => {
         }
         else{
             const token = _jwt.sign({
-                id: user._id,
-                isVerified: user.isVerified
+                id: user._id
             }, process.env.secret_key, {
                 expiresIn: process.env.key_expires_in
             })
-            sendVerificationEmail(user.Email, verificationToken, user.Name)
+            sendVerificationEmail(user.Email, verificationToken, user.name)
 
             return res.status(200).json({
                 status: 200,
