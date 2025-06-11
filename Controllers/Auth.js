@@ -115,13 +115,13 @@ const verifyEmail = async (req, res) => {
             })
         }
         else{
-            // if (user.isVerified === true) {
-            //     return res.status(400).json({
-            //         status: 400,
-            //         message: "Email already verified"
-            //     })
-            // }
-            // else{
+            if (user.isVerified === true) {
+                return res.status(400).json({
+                    status: 400,
+                    message: "Email already verified"
+                })
+            }
+            else{
                 if (Date.now() > user.verificationExp) {
                     return res.status(400).json({
                         status: 400,
@@ -129,20 +129,17 @@ const verifyEmail = async (req, res) => {
                     })
                 }
                 else{
-                    const updateUser = await UserModel.findOneAndUpdate(
-                        {Email: user.Email},
-                        {
+                    const updateUser = await UserModel.findByIdAndUpdate(user._id, {
                             isVerified: true,
                             verificationToken: undefined,
                             verificationExp: undefined
-                        }
-                    )
+                        })
                     return res.status(200).json({
                         status: 200,
                         message: "User verified successfully"
                     })
                 }
-            // }
+            }
         }
     }
     catch (error) {
