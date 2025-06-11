@@ -84,6 +84,26 @@ const signIn = async (req, res) => {
     }
 }
 
+const getAllUsers = async(req, res) =>{
+    try{
+        let users = await UserModel.find()
+        if(!users){
+            res.status(400).json({
+                status: 'error',
+                message: 'users not found'
+            })
+        }
+        res.status(200).json({
+            status: 'success',
+            message: 'users found',
+            users
+        })
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
 const verifyEmail = async (req, res) => {
     const {token} = req.params
     try {
@@ -95,7 +115,7 @@ const verifyEmail = async (req, res) => {
             })
         }
         else{
-            if (user.isVerified) {
+            if (user.isVerified === true) {
                 return res.status(400).json({
                     status: 400,
                     message: "Email already verified"
@@ -138,5 +158,6 @@ const verifyEmail = async (req, res) => {
 module.exports = {
     signUp,
     signIn,
-    verifyEmail
+    verifyEmail,
+    getAllUsers
 }
