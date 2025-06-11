@@ -115,13 +115,13 @@ const verifyEmail = async (req, res) => {
             })
         }
         else{
-            if (user.isVerified === true) {
-                return res.status(400).json({
-                    status: 400,
-                    message: "Email already verified"
-                })
-            }
-            else{
+            // if (user.isVerified === true) {
+            //     return res.status(400).json({
+            //         status: 400,
+            //         message: "Email already verified"
+            //     })
+            // }
+            // else{
                 if (Date.now() > user.verificationExp) {
                     return res.status(400).json({
                         status: 400,
@@ -133,25 +133,20 @@ const verifyEmail = async (req, res) => {
                         {Email: user.Email},
                         {
                             isVerified: true,
-                            verificationToken: null,
-                            verificationExp: null
-                        },
-
+                            verificationToken: undefined,
+                            verificationExp: undefined
+                        }
                     )
                     return res.status(200).json({
                         status: 200,
-                        message: "Email verified successfully"
+                        message: "User verified successfully"
                     })
                 }
-            }
+            // }
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({
-            status: 500,
-            message: "Internal server error"
-        })
     }
 }
 
