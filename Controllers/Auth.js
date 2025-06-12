@@ -133,7 +133,7 @@ const verifyEmail = async (req, res) => {
                             isVerified: true,
                             verificationToken: undefined,
                             verificationExp: undefined
-                        }, {new: true})
+                        })
                     return res.status(200).json({
                         status: 200,
                         message: "User verified successfully"
