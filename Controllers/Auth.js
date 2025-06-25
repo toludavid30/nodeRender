@@ -104,6 +104,28 @@ const getAllUsers = async(req, res) =>{
     }
 }
 
+const getSingleUser = async(req, res) =>{
+    try{
+        const {userId} = req.params
+        let users = await userModel.findById(userId)
+        if(!users){
+            res.status(400).json({
+                status: 'error',
+                message: 'users not found'
+            })
+        }
+        res.status(200).json({
+            status: 'success',
+            message: 'users found',
+            users
+        })
+    }
+    catch(error){
+        console.log(error);
+        
+    }
+}
+
 const verifyEmail = async (req, res) => {
     const {token} = req.params
     try {
@@ -147,9 +169,32 @@ const verifyEmail = async (req, res) => {
     }
 }
 
+const deleteSingleUser = async(req, res) =>{
+    try{
+        const {userId} = req.params
+        let users = await userModel.findByIdAndDelete(userId)
+        if(!users){
+            res.status(400).json({
+                status: 'error',
+                message: 'users not found'
+            })
+        }
+        res.status(200).json({
+            status: 'success',
+            message: 'users found',
+            users
+        })
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
 module.exports = {
     signUp,
     signIn,
     verifyEmail,
-    getAllUsers
+    getAllUsers, 
+    getSingleUser,
+    deleteSingleUser
 }
