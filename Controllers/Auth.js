@@ -72,7 +72,7 @@ const signIn = async (req, res) => {
                 }) 
                 res.status(200).json({
                     status: 200,
-                    message: 'user logged in successfully',
+                    message: 'user logged in successfully', user,
                     token
                 })
             }
@@ -127,7 +127,7 @@ const getSingleUser = async(req, res) =>{
 }
 
 const verifyEmail = async (req, res) => {
-    const {token} = req.params
+    const {token} = req.body
     try {
         const user = await UserModel.findOne({verificationToken: token})
         if (!user) {
