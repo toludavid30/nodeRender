@@ -9,7 +9,7 @@ const transporter = require('./services/nodemailer/transporter.js')
 app.use(express.json());
 
 const allowedOrigins = ['https://dolu-s-brand.vercel.app'];
-app.use(cors(
+app.options('*', cors(
     {
     origin: function(origin, callback){
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
