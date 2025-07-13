@@ -132,7 +132,9 @@ const getSingleUser = async(req, res) =>{
 const verifyEmail = async (req, res) => {
     const {token} = req.body
     try {
+        console.log("Token received:", token);
         const user = await UserModel.findOne({verificationToken: token})
+        console.log("User found:", user);
         if (!user) {
             return res.status(400).json({
                 status: 400,

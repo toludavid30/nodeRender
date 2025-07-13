@@ -9,7 +9,7 @@ const transporter = require('./services/nodemailer/transporter.js')
 
 
 app.use(cors({
-    origin: 'https://dolu-s-brand.vercel.app',
+    origin: ['https://dolu-s-brand.vercel.app', 'http://localhost:5173'],
     credentials: true
 }));
 
