@@ -1,5 +1,4 @@
 const { default: mongoose } = require("mongoose")
-const moongoose = require("mongoose")
 
 const ProductSchema = new mongoose.Schema({
     name : {
@@ -9,7 +8,7 @@ const ProductSchema = new mongoose.Schema({
     productImage:{
         type: String,
     },
-    type : {
+    category : {
         type: String,
         required : [true, 'type is required']
     },
@@ -18,10 +17,9 @@ const ProductSchema = new mongoose.Schema({
         required : true,
         unique: [true, 'id is required']
     },
-    description : {
-        type: String,
-        required : [true, 'description is required']
-    }
+    price : {
+        type: Number,
+        required : [true, 'price is required']}
 })
 
 const ProductModel = mongoose.model("Product", ProductSchema)

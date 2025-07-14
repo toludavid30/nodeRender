@@ -14,7 +14,7 @@ const dotenv = require('dotenv')
             <p>Hi <strong>${name}</strong>,</p>
             <p>Thank you for signing up! Please verify your email address by clicking the button below:</p>
             <p style="text-align: center;">
-                <a href="https://dolu-s-brand.vercel.app/verify/:${token}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px;">Verify Email</a>
+                <a href="https://dolu-s-brand.vercel.app/verify/${token}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px;">Verify Email</a>
             </p>
             <p>If you did not sign up for this account, you can safely ignore this email.</p>
         </div>

@@ -4,7 +4,8 @@ const connectMongoDB = require('./config/connectDB.js')
 connectMongoDB()
 const cors = require('cors');
 const userRouter = require('./Routers/Auth.js');
-const transporter = require('./services/nodemailer/transporter.js')
+const transporter = require('./services/nodemailer/transporter.js');
+const productRouter = require('./Routers/Products.js');
 
 
 
@@ -36,6 +37,7 @@ app.listen(PORT, () => {
 });
 
 app.use("/auth", userRouter)
+app.use("/product", productRouter)
 
 // app.use(*, (req,res) => {
 
