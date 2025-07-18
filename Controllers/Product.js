@@ -110,4 +110,36 @@ const updateSingleProduct = async(req, res) => {
     }
 }
 
-module.exports = {addProducts, getAllProducts, getSingleProduct,deleteSingleProduct, updateSingleProduct}
+const searchAndFilterProducts = async (req, res) => {
+    const {keyword} = req.body
+    let query = {}
+        if(keyword){
+            query.$or =[{name: {$regex:keyword, $options:'i'}},{category: {$regex:keyword, $options:'i'}},]
+        }
+    try{
+        let products = await ProductModel.find(query)
+        if(!products){
+            res.status(400).json({
+                status: 'error',
+                message: 'products not found'
+            })
+        }
+        res.status(200).json({
+            status: 'success',
+            message: 'products found',
+            products
+        })
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+module.exports = {
+    addProducts, 
+    getAllProducts,
+    getSingleProduct,
+    deleteSingleProduct,
+    updateSingleProduct,
+    searchAndFilterProducts 
+}
