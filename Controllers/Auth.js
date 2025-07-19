@@ -4,6 +4,7 @@ const _jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const sendVerificationEmail = require('../services/nodemailer/sendVerificationEmail')
 const generateRandomString = require('../utilities/RandomNumberGeneration')
+const sendUserMessage = require('../services/nodemailer/senUserMessage')
 
 const signUp = async (req, res) => {
     const 
@@ -193,11 +194,21 @@ const deleteSingleUser = async(req, res) =>{
     }
 }
 
+const sendMessage = async(req,res) =>{
+    try {
+        const{name, phone, emial, message} = req.body
+        sendUserMessage(name, phone, email, message)
+    } catch (error) {
+        console.log(error);
+    }
+} 
+
 module.exports = {
     signUp,
     signIn,
     verifyEmail,
     getAllUsers, 
     getSingleUser,
-    deleteSingleUser
+    deleteSingleUser,
+    sendMessage
 }
