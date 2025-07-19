@@ -15,7 +15,7 @@ const sendUserMessage = async(name, phone, email, message) =>{
             <p><strong>${name}</strong>,</p>
             <p><strong>${phone}</strong>,</p>
             <p><strong>${email}</strong>,</p>
-            <p><strong>${message}</strong>,</p>
+            <p><strong>${message}</strong>.</p>
         </div>
         <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #888888;">
             <p>&copy; 2025 Dolu. All rights reserved.</p>
