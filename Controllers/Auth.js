@@ -196,7 +196,7 @@ const deleteSingleUser = async(req, res) =>{
 
 const sendMessage = async(req,res) =>{
     try {
-        const{name, phone, emial, message} = req.body
+        const{name, phone, email, message} = req.body
         sendUserMessage(name, phone, email, message)
     } catch (error) {
         console.log(error);
