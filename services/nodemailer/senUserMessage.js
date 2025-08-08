@@ -14,7 +14,7 @@ const sendUserMessage = async(name, phone, email, message) =>{
         <div style="margin: 20px 0; line-height: 1.6;">
             <p><strong>${name}</strong>,</p>
             <p><strong>${phone}</strong>,</p>
-            <p><strong>${email}</strong>,</p>
+            <p><strong>${email}</strong>.</p>
             <p><strong>${message}</strong>.</p>
         </div>
         <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #888888;">

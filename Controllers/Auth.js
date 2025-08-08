@@ -198,6 +198,9 @@ const sendMessage = async(req,res) =>{
     try {
         const{name, phone, email, message} = req.body
         sendUserMessage(name, phone, email, message)
+        res.status(200).json({
+            message: "Message Delivered"
+        })
     } catch (error) {
         console.log(error);
     }
