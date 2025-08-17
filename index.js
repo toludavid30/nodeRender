@@ -10,7 +10,7 @@ const productRouter = require('./Routers/Products.js');
 
 
 app.use(cors({
-    origin: ['https://dolu-s-brand.vercel.app', 'http://localhost:5173'],
+    origin: ['https://dolu-s-brand.vercel.app', 'http://localhost:5174'],
     credentials: true
 }));
 

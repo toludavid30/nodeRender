@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const sendVerificationEmail = require('../services/nodemailer/sendVerificationEmail')
 const generateRandomString = require('../utilities/RandomNumberGeneration')
 const sendUserMessage = require('../services/nodemailer/senUserMessage')
+const { json } = require('express')
 
 const signUp = async (req, res) => {
     const 
@@ -130,6 +131,25 @@ const getSingleUser = async(req, res) =>{
     }
 }
 
+ const updateSingleUser = async(req, res) =>{
+    try{
+        const {userId, cartItems} = req.body
+        const user = await UserModel.findByIdAndUpdate(userId, {cartItems: cartItems}) 
+        res.status(200).json({
+            status: 200,
+            message: "Cart Product Added"
+        })
+        res.status(400).json({
+            status: 400,
+            message: "An error occurred"
+        })
+    }
+    catch(error){
+        console.log(error);
+        
+    }
+ }
+
 const verifyEmail = async (req, res) => {
     const {token} = req.body
     try {
@@ -212,6 +232,7 @@ module.exports = {
     verifyEmail,
     getAllUsers, 
     getSingleUser,
+    updateSingleUser,
     deleteSingleUser,
     sendMessage
 }
