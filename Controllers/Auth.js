@@ -226,6 +226,19 @@ const sendMessage = async(req,res) =>{
     }
 } 
 
+const sendFlowSubMail = async(req,res) =>{
+    try {
+        const{name, email} = req.body
+        sendUserMessage(name, email)
+        res.status(200).json({
+            message: "Message Delivered"
+        })
+    } catch (error) {
+        console.log(error);
+    }
+} 
+
+
 module.exports = {
     signUp,
     signIn,
@@ -234,5 +247,6 @@ module.exports = {
     getSingleUser,
     updateSingleUser,
     deleteSingleUser,
-    sendMessage
+    sendMessage,
+    sendFlowSubMail
 }
