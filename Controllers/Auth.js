@@ -6,6 +6,7 @@ const sendVerificationEmail = require('../services/nodemailer/sendVerificationEm
 const generateRandomString = require('../utilities/RandomNumberGeneration')
 const sendUserMessage = require('../services/nodemailer/senUserMessage')
 const { json } = require('express')
+const sendSubscribtion = require('../services/nodemailer/sendFlowSubscribe')
 
 const signUp = async (req, res) => {
     const 
@@ -229,7 +230,7 @@ const sendMessage = async(req,res) =>{
 const sendFlowSubMail = async(req,res) =>{
     try {
         const{name, email} = req.body
-        sendUserMessage(name, email)
+        sendSubscribtion(name, email)
         res.status(200).json({
             message: "Message Delivered"
         })
