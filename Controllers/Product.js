@@ -50,8 +50,8 @@ const getAllProducts = async(req, res) =>{
 const getSingleProduct = async(req, res) => {
     try{
         const {productId} = req.params
-        let products = await ProductModel.findById(productId)
-        if(!products){
+        let product = await ProductModel.findOne({id: productId})
+        if(!product){
             res.status(400).json({
                 status: 'error',
                 message: 'products not found'
@@ -60,7 +60,7 @@ const getSingleProduct = async(req, res) => {
         res.status(200).json({
             status: 'success',
             message: 'products found',
-            products
+            product
         })
     }
     catch(error){
