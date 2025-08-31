@@ -87,6 +87,9 @@ const signIn = async (req, res) => {
 
     }
     catch(error){
+        if (error) {
+        return res.status(500).json({ status: 500, message: "Server error" });
+        }
         console.log(error);   
     }
 }
@@ -137,14 +140,17 @@ const getSingleUser = async(req, res) =>{
     try{
         const {userId, cartItems} = req.body
         const user = await UserModel.findByIdAndUpdate(userId, {cartItems: cartItems}) 
+        if (!user) {
+            res.status(400).json({
+            status: 400,
+            message: "An error occurred"
+        })
+        }
         res.status(200).json({
             status: 200,
             message: "Cart Product Added"
         })
-        res.status(400).json({
-            status: 400,
-            message: "An error occurred"
-        })
+        
     }
     catch(error){
         console.log(error);
