@@ -16,19 +16,6 @@ app.use(cors({
 
 app.use(express.json());
 
-// const allowedOrigins = ['https://dolu-s-brand.vercel.app'];
-// app.use(cors(
-//     {
-//     origin: function(origin, callback){
-//         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-//             callback(null, true)
-//         } else {
-//             callback(new Error('Not allowed by CORS'))
-//         }
-//     },
-//     credentials: true
-// }
-// ))
 
 const PORT = 5005;
 
@@ -47,3 +34,5 @@ app.all("*", (req, res) => {
         message: "Page not found"
     })
 })
+
+app.use("*", errorHandler)

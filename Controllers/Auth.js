@@ -8,7 +8,7 @@ const sendUserMessage = require('../services/nodemailer/senUserMessage')
 const { json } = require('express')
 const sendSubscribtion = require('../services/nodemailer/sendFlowSubscribe')
 
-const signUp = async (req, res) => {
+const signUp = async (req, res, next) => {
     const 
     verificationToken = generateRandomString(32)
     verificationExp = Date.now() + 3 * 24 * 60 * 60 * 1000
@@ -46,7 +46,8 @@ const signUp = async (req, res) => {
         }
         
     } catch (error) {
-       console.log(error);
+    //    console.log(error);
+        next(error)
     }
 }
 
