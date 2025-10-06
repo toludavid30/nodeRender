@@ -237,12 +237,13 @@ const sendMessage = async(req,res) =>{
 const sendFlowSubMail = async(req,res) =>{
     try {
         const{name, email} = req.body
-        sendSubscribtion(name, email)
+        await sendSubscribtion(name, email)
         res.status(200).json({
             message: "Message Delivered"
         })
     } catch (error) {
         console.log(error);
+        return res.status(500).json({ message: "Server error" });
     }
 } 
 

@@ -1,7 +1,7 @@
 const transporter = require("./transporter")
 const env = require("dotenv")
 
-const sendSubscribtion = async (name,email)=>{
+const sendSubscribtion = async (name, email)=>{
     const mailOptions = {
         from: process.env.App_Email,
         to: email,
